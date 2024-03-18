@@ -1,0 +1,15 @@
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\bin\Debug\net6.0\CalculatorForShapes.exe
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\bin\Debug\net6.0\CalculatorForShapes.deps.json
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\bin\Debug\net6.0\CalculatorForShapes.runtimeconfig.json
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\bin\Debug\net6.0\CalculatorForShapes.dll
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\bin\Debug\net6.0\CalculatorForShapes.pdb
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\obj\Debug\net6.0\CalculatorForShapes.csproj.AssemblyReference.cache
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\obj\Debug\net6.0\CalculatorForShapes.GeneratedMSBuildEditorConfig.editorconfig
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\obj\Debug\net6.0\CalculatorForShapes.AssemblyInfoInputs.cache
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\obj\Debug\net6.0\CalculatorForShapes.AssemblyInfo.cs
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\obj\Debug\net6.0\CalculatorForShapes.csproj.CoreCompileInputs.cache
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\obj\Debug\net6.0\CalculatorForShapes.dll
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\obj\Debug\net6.0\refint\CalculatorForShapes.dll
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\obj\Debug\net6.0\CalculatorForShapes.pdb
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\obj\Debug\net6.0\CalculatorForShapes.genruntimeconfig.cache
+E:\Ingvar\Личные разработки\Тестовые\Mindbox\CalculatorForShapes\obj\Debug\net6.0\ref\CalculatorForShapes.dll
