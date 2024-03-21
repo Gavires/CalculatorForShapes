@@ -13,19 +13,19 @@ namespace CalculatorForShapes
         {
             try
             {
-                Console.WriteLine("Hello, World!");
+                var service = new ShapeService();
 
-                var cideParametrs = new List<double> { 1, 1, 3 };
-                var calculator = new ShapeService();
+                Console.WriteLine($"Площадь введенной фигуры {service.Calculate(new[] { 4.25 })}");
 
-                //Console.WriteLine($"Площадь введенной фигуры {calculator.WriteCalcul(cideParametrs)}");
-                Console.WriteLine($"Площадь введенной фигуры {calculator.WriteCalculReflec(cideParametrs)}");
+                Console.WriteLine($"Площадь введенной фигуры {service.Calculate(new[] { 16.25 })}");
+
+                Console.WriteLine($"Площадь введенной фигуры {service.Calculate(new[] { 4.25, 14, 10 })}");
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
         }
     }
 }

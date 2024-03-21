@@ -1,12 +1,7 @@
 ﻿namespace CalculatorForShapes.ShapeModel
 {
-    internal abstract class BasicModel 
+    internal class BasicModel
     {
-        internal List<double> ShapeMeasures { get; set; } = new List<double>();
-        //internal double Square { get; set; }
-
-        internal int CountParametrs { get; set; }
-
-        public abstract double AreaCalculator();
+        internal IReadOnlyCollection<double> ShapeMeasures { get; set; } = new List<double>();
     }
 }

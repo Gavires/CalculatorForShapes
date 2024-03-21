@@ -1,19 +1,20 @@
-﻿namespace CalculatorForShapes.ShapeModel
-{
-    internal class Circle : BasicModel
-    {
-        internal readonly int Count = 1;
+﻿using CalculatorForShapes.ShapeInterfaces;
 
-        public Circle(List<double> shapeMeasures)
+namespace CalculatorForShapes.ShapeModel
+{
+    internal class Circle : BasicModel, IAreaCalculator
+    {
+        public Circle() { }
+
+        public Circle(IReadOnlyCollection<double> shapeMeasures)
         {
             ShapeMeasures = shapeMeasures;
-            CountParametrs = 1;
         }
 
         /// <summary>
         /// Подсчет площади круга
         /// </summary>
         /// <returns></returns>
-        public override double AreaCalculator() => Math.PI * Math.Pow(ShapeMeasures[0], 2);
+        public double Calculate(IReadOnlyCollection<double> sideParameters) => Math.PI * Math.Pow(sideParameters.ElementAt(0), 2);
     }
 }

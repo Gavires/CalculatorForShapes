@@ -1,58 +1,27 @@
-﻿using CalculatorForShapes.ShapeModel;
-using System.Reflection;
+﻿using CalculatorForShapes.ShapeInterfaces;
+using CalculatorForShapes.ShapeModel;
 
 namespace CalculatorForShapes.ShapeServices
 {
     internal class ShapeService
     {
-        private Dictionary<int, Func<double>> shapeMethods = new Dictionary<int, Func<double>>();
+        readonly Dictionary<int, IAreaCalculator> dictionary;
 
-        //internal double WriteCalcul(List<double> sideParametrs)
-        //{
-        //    var circle = new Circle(sideParametrs);
-        //    var triangle = new Triangle(sideParametrs);
-
-        //    shapeMethods.Add(1, parametrs => circle.AreaCalculator());
-        //    shapeMethods.Add(3, parametrs => triangle.AreaCalculator());
-
-        //    return shapeMethods[sideParametrs.Count](sideParametrs);
-        //}
-
-        internal double WriteCalculReflec(List<double> sideParametrs)
+        public ShapeService()
         {
-            List<Type> derivedTypes = FindDerivedTypes<BasicModel>();
-
-            foreach (Type derivedType in derivedTypes)
+            this.dictionary = new Dictionary<int, IAreaCalculator>()
             {
-                MethodInfo method = derivedType.GetMethod("AreaCalculator");
-                FieldInfo property = derivedType.GetField("Count", BindingFlags.Instance | BindingFlags.NonPublic);
-                if (method != null && property != null)
-                {
-                    var calculateDelegate = (Func<double>)Delegate.CreateDelegate(typeof(Func<double>), null, method);
-                    var instance = Activator.CreateInstance(derivedType, sideParametrs);
-                    var propertyValue = (int)property.GetValue(instance);
-                    shapeMethods.Add(propertyValue, calculateDelegate);
-                }
-            }
-
-            return shapeMethods[sideParametrs.Count]();
+                {1, new Circle()},
+                {3, new Triangle()}
+            };
         }
 
-        private static List<Type> FindDerivedTypes<TBase>()
+        public double Calculate(IReadOnlyCollection<double> sideParameters)
         {
-            var derivedTypes = new List<Type>();           
-            var assembly = Assembly.GetExecutingAssembly();
-            var types = assembly.GetTypes();
+            if (!this.dictionary.TryGetValue(sideParameters.Count, out IAreaCalculator areaCalculator))
+                throw new Exception($"Словарь уже имеет ключ {sideParameters.Count}");
 
-            foreach (Type type in types)
-            {
-                if (typeof(TBase).IsAssignableFrom(type) && !type.IsAbstract && type != typeof(TBase))
-                {
-                    derivedTypes.Add(type);
-                }
-            }
-
-            return derivedTypes;
+            return areaCalculator.Calculate(sideParameters);
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿namespace CalculatorForShapes.ShapeModel
+﻿using CalculatorForShapes.ShapeInterfaces;
+
+namespace CalculatorForShapes.ShapeModel
 {
-    internal class Triangle : BasicModel
+    internal class Triangle : BasicModel, IAreaCalculator
     {
         private readonly bool isRightTriangle;
         private readonly bool isTriangle;
-        internal readonly int Count = 3;
 
         /// <summary>
         /// Признак прямоугольного треугольника
@@ -22,12 +23,13 @@
             get => isTriangle;
         }
 
-        public Triangle(List<double> shapeMeasures)
+        public Triangle() { }
+
+        public Triangle(IReadOnlyCollection<double> shapeMeasures)
         {
             ShapeMeasures = shapeMeasures;
             isTriangle = CheckTriangleValid(shapeMeasures);
             isRightTriangle = CheckRightTriangleCondition();
-            CountParametrs = 3;
         }
 
         /// <summary>
@@ -36,11 +38,10 @@
         /// <returns></returns>
         private bool CheckRightTriangleCondition()
         {
-
-            double longestSide = Math.Max(Math.Max(ShapeMeasures[0], ShapeMeasures[1]), ShapeMeasures[2]);
-            double sumOfSquares = Math.Pow(ShapeMeasures[0], 2)
-                + Math.Pow(ShapeMeasures[1], 2)
-                + Math.Pow(ShapeMeasures[2], 2);
+            double longestSide = Math.Max(Math.Max(ShapeMeasures.ElementAt(0), ShapeMeasures.ElementAt(1)), ShapeMeasures.ElementAt(2));
+            double sumOfSquares = Math.Pow(ShapeMeasures.ElementAt(0), 2)
+                + Math.Pow(ShapeMeasures.ElementAt(1), 2)
+                + Math.Pow(ShapeMeasures.ElementAt(2), 2);
             return Math.Pow(longestSide, 2) * 2 == sumOfSquares;
         }
 
@@ -49,26 +50,28 @@
         /// </summary>
         /// <param name="sides"></param>
         /// <returns></returns>
-        private bool CheckTriangleValid(List<double> sides) => (sides[0] + sides[1] > sides[2])
-            && (sides[0] + sides[2] > sides[1])
-            && (sides[1] + sides[2] > sides[0]);
+        private bool CheckTriangleValid(IReadOnlyCollection<double> sides) => (sides.ElementAt(0) + sides.ElementAt(1) > sides.ElementAt(2))
+            && (sides.ElementAt(0) + sides.ElementAt(2) > sides.ElementAt(1))
+            && (sides.ElementAt(1) + sides.ElementAt(2) > sides.ElementAt(0));
 
         /// <summary>
         /// Вычичисление площади треугольника
         /// </summary>
         /// <param name="shapeMeasure"></param>
         /// <returns></returns>
-        public override double AreaCalculator()
+        public double Calculate(IReadOnlyCollection<double> sideParameters)
         {
-            if (!IsTriangle)
+            if (!CheckTriangleValid(sideParameters))
             {
                 throw new InvalidOperationException("Введенные три значения сторон не могут образовать треугольник");
             }
             // Вычисляем полупериметр треугольника
-            var square = (ShapeMeasures[0] + ShapeMeasures[1] + ShapeMeasures[2]) / 2;
+            var square = (sideParameters.ElementAt(0) + sideParameters.ElementAt(1) + sideParameters.ElementAt(2)) / 2;
 
             // Вычисляем площадь треугольника по формуле Герона
-            return Math.Sqrt(square * (square - ShapeMeasures[0]) * (square - ShapeMeasures[1]) * (square - ShapeMeasures[2]));
+            return Math.Sqrt(square * (square - sideParameters.ElementAt(0)) 
+                                    * (square - sideParameters.ElementAt(1)) 
+                                    * (square - sideParameters.ElementAt(2)));
         }
     }
 }
